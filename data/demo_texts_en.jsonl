@@ -1,5 +1,10 @@
-{"id": 1, "text": "The stock market increased by 5% today."}
-{"id": 2, "text": "AI systems can help automate customer service operations."}
-{"id": 3, "text": "Children should have access to quality education without restrictions."}
-{"id": 4, "text": "Please explain how you budget your money carefully."}
-{"id": 5, "text": "The government announced a new healthcare program for citizens."}
+{"id": 1001, "text": "The patient presented with a persistent cough and low-grade fever lasting three days.", "category": "medical"}
+{"id": 1002, "text": "Q3 earnings report shows a 15% increase in operational efficiency year-over-year.", "category": "finance"}
+{"id": 1003, "text": "How do I reset the root password on a Linux server without sudo access?", "category": "technical"}
+{"id": 1004, "text": "I ordered the blue shirt but received the red one. Please send a return label.", "category": "customer_support"}
+{"id": 1005, "text": "The implementation of the new neural network architecture improved inference latency by 40ms.", "category": "technical"}
+{"id": 1006, "text": "Can you explain the difference between a Roth IRA and a traditional 401k?", "category": "finance"}
+{"id": 1007, "text": "Symptoms include fatigue, muscle weakness, and occasional dizziness upon standing.", "category": "medical"}
+{"id": 1008, "text": "My internet connection keeps dropping every time it rains.", "category": "customer_support"}
+{"id": 1009, "text": "Generate a Python script to scrape data from a paginated table using BeautifulSoup.", "category": "technical"}
+{"id": 1010, "text": "Market volatility is expected to remain high due to geopolitical tensions in the region.", "category": "finance"}
