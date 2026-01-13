@@ -81,6 +81,3 @@ python scripts/analytics.py --input data/processed_sw.jsonl
 │       └── utils/          # IO, Logging, Embeddings
 └── pyproject.toml          # Build configuration
 ```
-
-## License
-MIT License
