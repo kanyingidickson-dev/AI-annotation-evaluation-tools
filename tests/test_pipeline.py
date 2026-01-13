@@ -1,6 +1,6 @@
 import pytest
 from ai_eval_tools.core.llm_client import LLMClient
-from ai_eval_tools.scripts.pipeline_autonomous import AnnotationEntry
+from ai_eval_tools.core.schema import AnnotationEntry
 
 def test_annotation_entry_validation():
     """Test that pydantic models validate data correctly."""
