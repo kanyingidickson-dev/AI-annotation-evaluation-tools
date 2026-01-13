@@ -1,5 +1,10 @@
-{"id": 1, "text": "Soko la hisa limeongezeka kwa asilimia 5 leo."}
-{"id": 2, "text": "Mifumo ya AI inaweza kusaidia kuendesha huduma kwa wateja."}
-{"id": 3, "text": "Watoto wanapaswa kupata elimu bora bila vizuizi."}
-{"id": 4, "text": "Tafadhali elezea jinsi unavyotumia fedha zako kwa uangalifu."}
-{"id": 5, "text": "Serikali imetangaza mpango mpya wa afya kwa wananchi."}
+{"id": 2001, "text": "Mgonjwa alilalamika maumivu makali ya kichwa na kichefuchefu tangu jana usiku.", "category": "medical"}
+{"id": 2002, "text": "Ripoti ya fedha inaonyesha ongezeko la faida kwa asilimia kumi ikilinganishwa na mwaka jana.", "category": "finance"}
+{"id": 2003, "text": "Ninawezaje kubadilisha nenosiri la akaunti yangu bila kupoteza data zangu?", "category": "technical"}
+{"id": 2004, "text": "Niliagiza kiatu nambari 40 lakini nimeletewa nambari 38. Tafadhali nisaidieni.", "category": "customer_support"}
+{"id": 2005, "text": "Mfumo mpya wa teknolojia umesaidia kupunguza muda wa kusubiri kwa wateja.", "category": "technical"}
+{"id": 2006, "text": "Je, kuna tofauti gani kati ya akaunti ya akiba na akaunti ya hundi?", "category": "finance"}
+{"id": 2007, "text": "Dalili zake ni pamoja na homa kali, kutapika, na kuhisi kuchoka sana.", "category": "medical"}
+{"id": 2008, "text": "Mtandao wangu unakatika kila mara ninapojaribu kupakua faili kubwa.", "category": "customer_support"}
+{"id": 2009, "text": "Andika msimbo wa chatu (Python) wa kuhesabu idadi ya maneno katika sentensi.", "category": "technical"}
+{"id": 2010, "text": "Bei ya mafuta inatarajiwa kupanda kutokana na mabadiliko ya soko la dunia.", "category": "finance"}
