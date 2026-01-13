@@ -1,29 +1,29 @@
 # Enterprise AI Evaluation & Annotation Toolkit
 
-A professional-grade, autonomous pipeline for **Data Operations** in AI Development. This toolkit provides a robust infrastructure for annotating datasets, evaluating LLM outputs, and generating embedding indices for RAG systems.
+A professional-grade, autonomous pipeline for Data Operations in AI Development. This toolkit provides a robust infrastructure for annotating datasets, evaluating LLM outputs, and generating embedding indices for RAG systems.
 
-Designed for high-throughput environments requiring **reliability**, **observability**, and **extensibility**.
+Designed for high-throughput environments requiring reliability, observability, and extensibility.
 
----
+## Key Capabilities
 
-## 🚀 Key Capabilities
-
-### 1. Autonomous Data Pipeline (`scripts/pipeline_autonomous.py`)
-- **Automated Labeling**: leverages SOTA LLMs (GPT-4, Claude 3) to categorize text data.
-- **Auto-Evaluation**: Scoring rubrics (0-1) for accuracy, hallucinaton detection, and relevance.
+### 1. Autonomous Data Pipeline
+- **Automated Labeling**: Leverages SOTA LLMs (GPT-4, Claude 3) to categorize text data.
+- **Auto-Evaluation**: Scoring rubrics (0-1) for accuracy, hallucination detection, and relevance.
 - **RAG Optimization**: Automatically generates and indexes vector embeddings.
-- **Enterprise Logging**: Structured logging and automatic retries using `tenacity`.
+- **Enterprise Logging**: Structured logging and automatic retries using tenacity.
 
-### 2. Quality Assurance (`scripts/validate_dataset.py`)
-- Schema validation using **Pydantic**.
-- Duplicate detection and coverage reporting using **Pandas**.
+### 2. Quality Assurance
+- Schema validation using Pydantic.
+- Duplicate detection and coverage reporting using Pandas.
 
-### 3. Human-in-the-Loop (`scripts/annotate_text.py`)
+### 3. Analytics & Insights
+- Statistical analysis of dataset distribution.
+- Automated rubric generation for consistent evaluation.
+
+### 4. Human-in-the-Loop
 - CLI interface for manual review and correction of edge cases.
 
----
-
-## 🛠️ Installation
+## Installation
 
 **Prerequisites:** Python 3.9+
 
@@ -33,12 +33,10 @@ cd ai-annotation-evaluation-tools
 pip install -r requirements.txt
 ```
 
----
-
-## ⚡ Quick Start
+## Quick Start
 
 ### Configuration
-Set your environment variables (or use a `.env` file):
+Set your environment variables (or use a .env file):
 ```bash
 export OPENAI_API_KEY="sk-..."
 export ANTHROPIC_API_KEY="sk-..."
@@ -61,9 +59,12 @@ python scripts/pipeline_autonomous.py \
 python scripts/validate_dataset.py --input data/processed_sw.jsonl --csv
 ```
 
----
+### 3. Generate Analytics
+```bash
+python scripts/analytics.py --input data/processed_sw.jsonl
+```
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 .
@@ -71,6 +72,8 @@ python scripts/validate_dataset.py --input data/processed_sw.jsonl --csv
 ├── scripts/                # CLI Entry points
 │   ├── pipeline_autonomous.py
 │   ├── validate_dataset.py
+│   ├── analytics.py
+│   ├── generate_rubric.py
 │   └── annotate_text.py
 ├── src/
 │   └── ai_eval_tools/      # Core Package
@@ -79,7 +82,5 @@ python scripts/validate_dataset.py --input data/processed_sw.jsonl --csv
 └── pyproject.toml          # Build configuration
 ```
 
----
-
-## 🛡️ License
+## License
 MIT License
