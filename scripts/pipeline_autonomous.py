@@ -13,13 +13,7 @@ from ai_eval_tools.core.llm_client import LLMClient
 from ai_eval_tools.utils.io_utils import read_jsonl, write_jsonl
 from ai_eval_tools.utils.embeddings import EmbeddingManager
 from ai_eval_tools.utils.logger import logger
-
-class AnnotationEntry(BaseModel):
-    id: int
-    text: str
-    label: Optional[str] = None
-    score: Optional[float] = None
-    feedback: Optional[str] = None
+from ai_eval_tools.core.schema import AnnotationEntry
 
 def auto_annotate(text: str, llm_client: LLMClient, language: str = "en") -> str:
     """Uses LLM to produce an initial annotation label."""
