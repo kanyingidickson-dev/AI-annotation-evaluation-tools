@@ -6,21 +6,21 @@ Designed for high-throughput environments requiring reliability, observability, 
 
 ## Key Capabilities
 
-### 1. Autonomous Data Pipeline
+### 1. Autonomous Data Pipeline (`scripts/pipeline_autonomous.py`)
 - **Automated Labeling**: Leverages SOTA LLMs (GPT-4, Claude 3) to categorize text data.
 - **Auto-Evaluation**: Scoring rubrics (0-1) for accuracy, hallucination detection, and relevance.
 - **RAG Optimization**: Automatically generates and indexes vector embeddings.
 - **Enterprise Logging**: Structured logging and automatic retries using tenacity.
 
-### 2. Quality Assurance
+### 2. Quality Assurance (`scripts/validate_dataset.py`)
 - Schema validation using Pydantic.
 - Duplicate detection and coverage reporting using Pandas.
 
-### 3. Analytics & Insights
+### 3. Analytics & Insights (`scripts/analytics.py`, `scripts/generate_rubric.py`)
 - Statistical analysis of dataset distribution.
 - Automated rubric generation for consistent evaluation.
 
-### 4. Human-in-the-Loop
+### 4. Human-in-the-Loop (`scripts/annotate_text.py`)
 - CLI interface for manual review and correction of edge cases.
 
 ## Installation
