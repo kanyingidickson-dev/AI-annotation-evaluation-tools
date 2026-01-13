@@ -1,92 +1,85 @@
-# AI Annotation & Evaluation Toolkit
+# Enterprise AI Evaluation & Annotation Toolkit
 
-This repository demonstrates a **fully autonomous AI dataset pipeline** for multilingual data (Swahili + English).  
+A professional-grade, autonomous pipeline for **Data Operations** in AI Development. This toolkit provides a robust infrastructure for annotating datasets, evaluating LLM outputs, and generating embedding indices for RAG systems.
 
-It performs:
-- **LLM-assisted annotation**  
-- **AI evaluation + scoring**  
-- **RAG-ready embedding generation**  
-
-This setup is ideal for high-value AI projects like those at Welocalize/Welo Data.
+Designed for high-throughput environments requiring **reliability**, **observability**, and **extensibility**.
 
 ---
 
-## Features
-- Fully automated labeling using GPT-4 or Claude  
-- AI scoring with feedback (accuracy, relevance, clarity, cultural correctness)  
-- Embeddings generated for downstream retrieval applications  
-- Multilingual support: Swahili + English  
-- Batch-ready and modular  
+## 🚀 Key Capabilities
+
+### 1. Autonomous Data Pipeline (`scripts/pipeline_autonomous.py`)
+- **Automated Labeling**: leverages SOTA LLMs (GPT-4, Claude 3) to categorize text data.
+- **Auto-Evaluation**: Scoring rubrics (0-1) for accuracy, hallucinaton detection, and relevance.
+- **RAG Optimization**: Automatically generates and indexes vector embeddings.
+- **Enterprise Logging**: Structured logging and automatic retries using `tenacity`.
+
+### 2. Quality Assurance (`scripts/validate_dataset.py`)
+- Schema validation using **Pydantic**.
+- Duplicate detection and coverage reporting using **Pandas**.
+
+### 3. Human-in-the-Loop (`scripts/annotate_text.py`)
+- CLI interface for manual review and correction of edge cases.
 
 ---
 
-## Setup
+## 🛠️ Installation
 
-1. Clone the repo:
+**Prerequisites:** Python 3.9+
 
 ```bash
-git clone https://github.com/kanyingidickson-dev/ai-annotation-evaluation-tools.git
+git clone <repo-url>
 cd ai-annotation-evaluation-tools
-```
-
-2. Install dependencies:
-
-```bash
 pip install -r requirements.txt
 ```
 
-3. Set your API key:
-
-```bash
-export OPENAI_API_KEY="your_openai_api_key_here"
-```
-
 ---
 
-## Demo Usage
+## ⚡ Quick Start
 
-### Run the autonomous pipeline (Swahili dataset)
+### Configuration
+Set your environment variables (or use a `.env` file):
+```bash
+export OPENAI_API_KEY="sk-..."
+export ANTHROPIC_API_KEY="sk-..."
+```
+
+### 1. Run Autonomous Pipeline
+Multilingual (e.g., Swahili or Spanish) ready.
 
 ```bash
 python scripts/pipeline_autonomous.py \
   --input data/demo_texts_sw.jsonl \
-  --output data/demo_annotated_scored_sw.jsonl \
-  --embeddings data/embeddings/demo_embeddings_sw.json \
+  --output data/processed_sw.jsonl \
+  --embeddings data/embeddings/swahili_index.json \
   --model gpt-4 \
-  --api_key $OPENAI_API_KEY \
   --language sw
 ```
 
-### Run the autonomous pipeline (English dataset)
-
+### 2. Validate Results
 ```bash
-python scripts/pipeline_autonomous.py \
-  --input data/demo_texts_en.jsonl \
-  --output data/demo_annotated_scored_en.jsonl \
-  --embeddings data/embeddings/demo_embeddings_en.json \
-  --model gpt-4 \
-  --api_key $OPENAI_API_KEY \
-  --language en
+python scripts/validate_dataset.py --input data/processed_sw.jsonl --csv
 ```
 
 ---
 
-## Output
+## 📦 Project Structure
 
-* **Annotated + scored dataset**: JSONL with fields `id`, `text`, `label`, `score`, `feedback`
-* **Embeddings JSON**: ready for retrieval-augmented generation (RAG) applications
+```
+.
+├── data/                   # Dataset storage
+├── scripts/                # CLI Entry points
+│   ├── pipeline_autonomous.py
+│   ├── validate_dataset.py
+│   └── annotate_text.py
+├── src/
+│   └── ai_eval_tools/      # Core Package
+│       ├── core/           # LLM Clients & Config
+│       └── utils/          # IO, Logging, Embeddings
+└── pyproject.toml          # Build configuration
+```
 
 ---
 
-## Extending the Toolkit
-
-* Swap in your own datasets in Swahili/English
-* Customize LLM prompts for specialized annotation
-* Integrate into AI training pipelines or QA workflows
-
----
-
-## Contact
-
-* **Author**: Dickson Kanyingi
-* **LinkedIn**: [https://www.linkedin.com/in/kanyingidickson-dev](https://www.linkedin.com/in/kanyingidickson-dev)
+## 🛡️ License
+MIT License

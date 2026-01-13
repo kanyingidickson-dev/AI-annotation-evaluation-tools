@@ -1,5 +1,10 @@
-openai
-langchain
+openai>=1.0.0
+langchain>=0.1.0
+langchain-openai
+langchain-anthropic
 anthropic
 scikit-learn
 numpy
+pydantic>=2.0.0
+tenacity>=8.0.0
+python-dotenv

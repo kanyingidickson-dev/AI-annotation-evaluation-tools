@@ -1,30 +1,46 @@
 import argparse
 import sys
-import os
+from pathlib import Path
 
-# Add parent directory to path to import utils
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add src to path
+root_dir = Path(__file__).resolve().parent.parent
+sys.path.append(str(root_dir / "src"))
 
-from utils.helpers import read_jsonl, write_jsonl
+from ai_eval_tools.utils.io_utils import read_jsonl, write_jsonl
+from ai_eval_tools.utils.logger import logger
 
-def annotate_entry(entry):
-    print(f"\nID: {entry['id']}")
-    print(f"Text: {entry['text']}")
-    label = input("Enter label: ")
-    entry['label'] = label
+def annotate_entry(entry: dict) -> dict:
+    print("\n" + "="*50)
+    print(f"ID: {entry.get('id')}")
+    print(f"Text: {entry.get('text')}")
+    print("-" * 50)
+    label = input("Input Label (or 'skip' to skip): ").strip()
+    if label.lower() != 'skip':
+        entry['label'] = label
     return entry
 
-def main(input_path, output_path):
-    dataset = read_jsonl(input_path)
-    annotated = []
-    for entry in dataset:
-        annotated.append(annotate_entry(entry))
-    write_jsonl(annotated, output_path)
-    print(f"\nAnnotated data saved to {output_path}")
+def main(input_path: str, output_path: str):
+    logger.info("Starting manual annotation session...")
+    try:
+        dataset = read_jsonl(input_path)
+        annotated = []
+        
+        for i, entry in enumerate(dataset):
+            logger.info(f"Processing {i+1}/{len(dataset)}")
+            annotated.append(annotate_entry(entry))
+            
+        write_jsonl(annotated, output_path)
+        logger.info("Session complete.")
+        
+    except KeyboardInterrupt:
+        logger.warning("\nSession interrupted by user. Saving progress...")
+        if annotated:
+             write_jsonl(annotated, output_path)
+        sys.exit(0)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", required=True, help="Path to input JSONL dataset")
-    parser.add_argument("--output", required=True, help="Path to save annotated dataset")
+    parser.add_argument("--input", required=True)
+    parser.add_argument("--output", required=True)
     args = parser.parse_args()
     main(args.input, args.output)

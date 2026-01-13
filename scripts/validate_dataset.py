@@ -1,44 +1,40 @@
 import argparse
 import sys
-import os
+import pandas as pd # type: ignore
+from pathlib import Path
+from typing import List
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add src to path
+root_dir = Path(__file__).resolve().parent.parent
+sys.path.append(str(root_dir / "src"))
 
-from utils.helpers import read_jsonl
+from ai_eval_tools.utils.io_utils import read_jsonl
+from ai_eval_tools.utils.logger import logger
 
-def check_missing_fields(dataset, required_fields):
-    missing = []
-    for entry in dataset:
-        for field in required_fields:
-            if field not in entry:
-                missing.append(entry['id'])
-                break
-    return missing
-
-def check_duplicates(dataset):
-    seen = set()
-    duplicates = []
-    for entry in dataset:
-        text = entry['text']
-        if text in seen:
-            duplicates.append(entry['id'])
-        else:
-            seen.add(text)
-    return duplicates
-
-def main(input_path):
-    dataset = read_jsonl(input_path)
-    required_fields = ['id', 'text']
-    missing = check_missing_fields(dataset, required_fields)
-    duplicates = check_duplicates(dataset)
+def validate(input_path: str, export_csv: bool = False):
+    logger.info(f"Validating dataset: {input_path}")
+    data = read_jsonl(input_path)
     
-    print("=== Dataset Validation Report ===")
-    print(f"Total entries: {len(dataset)}")
-    print(f"Entries missing required fields: {missing}")
-    print(f"Duplicate entries: {duplicates}")
+    df = pd.DataFrame(data)
+    
+    report = {
+        "Total Entries": len(df),
+        "Missing Labels": df['label'].isnull().sum() if 'label' in df.columns else "N/A",
+        "Duplicate Texts": df.duplicated(subset=['text']).sum() if 'text' in df.columns else 0
+    }
+    
+    print("\n=== Validation Report ===")
+    for k, v in report.items():
+        print(f"{k:<20}: {v}")
+    
+    if export_csv:
+        csv_path = input_path.replace(".jsonl", "_report.csv")
+        df.to_csv(csv_path, index=False)
+        logger.info(f"Report exported to {csv_path}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", required=True, help="Path to JSONL dataset")
+    parser.add_argument("--input", required=True)
+    parser.add_argument("--csv", action="store_true", help="Export to CSV")
     args = parser.parse_args()
-    main(args.input)
+    validate(args.input, args.csv)
